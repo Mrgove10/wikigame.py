@@ -1,26 +1,31 @@
 import ui
 from wikipediaPage import wikipediaPage
-import requests 
+import requests
 
+# varriable declarations
 game = True
 roundNumber = 0
 randomArticleURl = "https://en.wikipedia.org/wiki/Special:Random"
+urlStackTrace = []
 
-page1 = wikipediaPage(requests.get(randomArticleURl).url) 
-#page2 = wikipediaPage(requests.get(randomArticleURl).url) 
-print(page1.title.contents[0])
-#print(page2.title.contents[0])
+#initial pages
+startPage = wikipediaPage(randomArticleURl)
+goalPage = wikipediaPage(randomArticleURl)
 
-#entry point
+urlStackTrace.append(startPage)
+print(urlStackTrace)
 
-#l = wikipediaPage("https://en.wikipedia.org/wiki/Tomorrowland_(festival)")
-#print(l.title)
 ui.startText()
-page1.printLinkOptions()
+startPage.printLinkOptions()
 
-while game :
+while game:
     ui.roundText(roundNumber)
+    print("Start page :", startPage.title.contents[0])
+    print("Goal page :", goalPage.title.contents[0])
+    print("Current page :", startPage.title.contents[0])
     # main loop
     choice = input("Your choice : ")
-    
-    roundNumber = roundNumber +1
+
+    if choice == "exit":
+        exit(0)
+    roundNumber = roundNumber + 1

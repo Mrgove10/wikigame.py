@@ -4,10 +4,10 @@ import sys
 
 
 class wikipediaPage():
-    def __init__(self, url=""):
+    def __init__(self, url):
         self.url = url
         self.title = ""
-        self.rawpageContent = ""
+        self.rawPageContent = ""
         self.allLinksList = []
         # calls the needed methodes
         self.getRawPageContent()
@@ -16,15 +16,15 @@ class wikipediaPage():
 
     def getRawPageContent(self):
         req = urllib.request.Request(
-            url="https://en.wikipedia.org/wiki/Python_(programming_language)",
+            url=self.url,
             headers={'User-Agent': ' Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0'})
         handler = urllib.request.urlopen(req)
         with handler as response:
             soup = BeautifulSoup(response, 'html.parser')
-            self.rawpageContent = soup
+            self.rawPageContent = soup
 
     def getAllLinks(self):
-        soup = self.rawpageContent
+        soup = self.rawPageContent
         # selects all the pragraphs
         for x in soup.find_all(True, {'class': ['external', 'internal', 'nowrap', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox_v1', 'infobox']}):
             x.decompose()
@@ -44,8 +44,8 @@ class wikipediaPage():
         # print(len(all_links))
 
     def getPageTitle(self):
-        self.title = self.rawpageContent.find('h1')
+        self.title = self.rawPageContent.find('h1')
 
     def printLinkOptions(self):
-        for p in self.allLinksList:
-            print(p.contents[0])
+        for idx, val in enumerate(self.allLinksList):
+            print(idx, ":", val.contents[0])

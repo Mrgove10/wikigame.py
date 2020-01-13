@@ -11,4 +11,4 @@ def startText():
 
 
 def roundText(roundNumber):
-    print("*** Round ", str(roundNumber), " ***")
+    print("\n*** Round ", str(roundNumber), " ***")
