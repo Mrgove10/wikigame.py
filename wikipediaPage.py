@@ -26,9 +26,9 @@ class wikipediaPage():
     def getAllLinks(self):
         soup = self.rawPageContent
         # selects all the pragraphs
-        for x in soup.find_all(True, {'class': ['external', 'internal', 'nowrap', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox_v1', 'infobox']}):
+        for x in soup.find_all(True, {'class': ['IPA', 'external', 'internal', 'citation book', 'plainlinks', 'nowrap', 'portal', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox']}):
             x.decompose()
-        for x in soup.find_all(True, {'id': ['toc', 'mw-panel', 'catlinks']}):
+        for x in soup.find_all(True, {'id': ['footer', 'toc', 'mw-panel', 'mw-head', 'catlinks']}):
             x.decompose()
         all_links = soup.select('p a[href^="/wiki"]')
         # seests all the table
