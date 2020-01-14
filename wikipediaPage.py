@@ -48,6 +48,10 @@ class wikipediaPage():
     def printLinkOptions(self):
         for idx, val in enumerate(self.__allLinksList):
             print(idx, ":", val.contents[0])
+            
+    def printFirstTenLinkOptions(self):
+        for i in range(10):
+            print(i, ":", val.contents[i])
 
     def getTitle(self):
         return self.__title

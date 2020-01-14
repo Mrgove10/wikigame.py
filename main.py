@@ -13,7 +13,7 @@ baseArticleUrl = "https://en.wikipedia.org"
 urlStackTrace = []
 
 ui.startText()
-spinner = yaspin(Spinners.circleHalves, text="Loading...") #spinner
+spinner = yaspin(Spinners.circleHalves, text="Loading...")  # spinner
 spinner.start()
 # initial pages
 startPage = wikipediaPage(randomArticleUrl)
@@ -28,22 +28,34 @@ def goToNextLink(currentpage, int):
     urlStackTrace.append(wikipediaPage(url))
 
 
+def goToPrevLink(currentpage):
+    old = urlStackTrace[-2].get('href')
+    url = baseArticleUrl+nextlink
+    urlStackTrace.append(wikipediaPage(url))
+
+
 while game:
     ui.roundText(roundNumber)
     print("Start page :", startPage.getTitle().contents[0], startPage.getUrl())
     print("Goal page :", goalPage.getTitle().contents[0], goalPage.getUrl())
-    print("Current page :", urlStackTrace[-1].getTitle().contents[0], urlStackTrace[-1].getUrl())
-    urlStackTrace[-1].printLinkOptions()
+    print("Current page :",
+          urlStackTrace[-1].getTitle().contents[0], urlStackTrace[-1].getUrl())
+    urlStackTrace[-1].printFirstTenLinkOptions()
     choice = ""
     # main loop
     while choice == "":
         choice = input("Your choice : ")
         if choice == "exit":
             exit(0)
-        spinner.start()
-        goToNextLink(urlStackTrace[-1], int(choice))
-    if goalPage.getUrl() == urlStackTrace[-1].getUrl() :
-        print("victory")
+        elif choice == "-1":
+            urlStackTrace[-1].printLinkOptions()
+        elif choice == "back":
+            goToPrevLink(urlStackTrace[-2])
+        else:
+            spinner.start()
+            goToNextLink(urlStackTrace[-1], int(choice))
+    if goalPage.getUrl() == urlStackTrace[-1].getUrl():
+        print("victory in", roundNumber, "steps")
         game = False
     roundNumber = roundNumber + 1
     spinner.stop()
