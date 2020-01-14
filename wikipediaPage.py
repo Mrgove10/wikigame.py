@@ -3,6 +3,7 @@ import urllib.request
 import sys
 from yaspin import yaspin
 
+
 class wikipediaPage():
     def __init__(self, url):
         self.__url = url
@@ -13,7 +14,7 @@ class wikipediaPage():
         self.getRawPageContent()
         self.getAllLinks()
         self.getPageTitle()
-    
+
     def getRawPageContent(self):
         req = urllib.request.Request(
             url=self.__url,
@@ -22,7 +23,7 @@ class wikipediaPage():
         with handler as response:
             soup = BeautifulSoup(response, 'html.parser')
             self.__rawPageContent = soup
-            self.__url = handler.geturl() #sets the correct adress
+            self.__url = handler.geturl()  # sets the correct adress
 
     def getAllLinks(self):
         soup = self.__rawPageContent
@@ -48,10 +49,13 @@ class wikipediaPage():
     def printLinkOptions(self):
         for idx, val in enumerate(self.__allLinksList):
             print(idx, ":", val.contents[0])
-            
+
     def printFirstTenLinkOptions(self):
-        for i in range(10):
-            print(i, ":", val.contents[i])
+        if len(self.__allLinksList) > 10:
+            for i in range(10):
+                print(i, ":", self.__allLinksList[i])
+        else:
+            self.printLinkOptions()
 
     def getTitle(self):
         return self.__title

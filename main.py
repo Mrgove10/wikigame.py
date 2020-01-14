@@ -28,7 +28,7 @@ def goToNextLink(currentpage, int):
     urlStackTrace.append(wikipediaPage(url))
 
 
-def goToPrevLink(currentpage):
+def goToPrevLink():
     old = urlStackTrace[-2].get('href')
     url = baseArticleUrl+nextlink
     urlStackTrace.append(wikipediaPage(url))
@@ -37,23 +37,32 @@ def goToPrevLink(currentpage):
 while game:
     ui.roundText(roundNumber)
     print("Start page :", startPage.getTitle().contents[0], startPage.getUrl())
+    print("---")
     print("Goal page :", goalPage.getTitle().contents[0], goalPage.getUrl())
+    print("---")
     print("Current page :",
           urlStackTrace[-1].getTitle().contents[0], urlStackTrace[-1].getUrl())
     urlStackTrace[-1].printFirstTenLinkOptions()
-    choice = ""
-    # main loop
-    while choice == "":
+    print("-1 : to show all links")
+    print("back : goes back one step")
+    # try:
+    nextLink = False
+    while not nextLink :
         choice = input("Your choice : ")
-        if choice == "exit":
-            exit(0)
-        elif choice == "-1":
+        if choice == "-1":
             urlStackTrace[-1].printLinkOptions()
+        elif choice == "exit":
+            exit(0)
         elif choice == "back":
-            goToPrevLink(urlStackTrace[-2])
-        else:
+            goToPrevLink()
+        elif choice == "":
+            pass
+        elif 0 <= int(choice) <= len(urlStackTrace[-1].getAllLinksList()):
             spinner.start()
             goToNextLink(urlStackTrace[-1], int(choice))
+            nextLink = True
+    # except:
+    #     print("An error has occured")
     if goalPage.getUrl() == urlStackTrace[-1].getUrl():
         print("victory in", roundNumber, "steps")
         game = False
