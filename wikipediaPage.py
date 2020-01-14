@@ -3,7 +3,6 @@ import urllib.request
 import sys
 from yaspin import yaspin
 
-
 class wikipediaPage():
     def __init__(self, url):
         self.__url = url
@@ -53,12 +52,12 @@ class wikipediaPage():
     def printFirstTenLinkOptions(self):
         if len(self.__allLinksList) > 10:
             for i in range(10):
-                print(i, ":", self.__allLinksList[i])
+                print(i, ":", self.__allLinksList[i].contents[0])
         else:
             self.printLinkOptions()
 
     def getTitle(self):
-        return self.__title
+        return self.__title.contents[0]
 
     def getAllLinksList(self):
         return self.__allLinksList

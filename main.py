@@ -34,24 +34,33 @@ def goToPrevLink():
     urlStackTrace.append(wikipediaPage(url))
 
 
+def printPath():
+    print("This is the path you took :")
+    for idx, val in enumerate(urlStackTrace):
+        print(idx, ":", val.getTitle())
+
+
 while game:
     ui.roundText(roundNumber)
-    print("Start page :", startPage.getTitle().contents[0], startPage.getUrl())
+    print("Start page :", startPage.getTitle(), startPage.getUrl())
     print("---")
-    print("Goal page :", goalPage.getTitle().contents[0], goalPage.getUrl())
+    print("Goal page :", goalPage.getTitle(), goalPage.getUrl())
     print("---")
     print("Current page :",
-          urlStackTrace[-1].getTitle().contents[0], urlStackTrace[-1].getUrl())
+          urlStackTrace[-1].getTitle(), urlStackTrace[-1].getUrl())
+    print("---")
     urlStackTrace[-1].printFirstTenLinkOptions()
     print("-1 : to show all links")
     print("back : goes back one step")
     # try:
     nextLink = False
-    while not nextLink :
+    while not nextLink:
         choice = input("Your choice : ")
         if choice == "-1":
             urlStackTrace[-1].printLinkOptions()
         elif choice == "exit":
+            printPath()
+            game = False
             exit(0)
         elif choice == "back":
             goToPrevLink()
@@ -65,6 +74,7 @@ while game:
     #     print("An error has occured")
     if goalPage.getUrl() == urlStackTrace[-1].getUrl():
         print("victory in", roundNumber, "steps")
+        printPath()
         game = False
     roundNumber = roundNumber + 1
     spinner.stop()

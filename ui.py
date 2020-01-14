@@ -6,7 +6,7 @@ def startText():
           | |/\| | | |/ / | | __ / _` | '_ ` _ \ / _ \\
           \  /\  / |   <| | |_\ \ (_| | | | | | |  __/
            \/  \/|_|_|\_\_|\____/\__,_|_| |_| |_|\___|        
-           English Edition                          
+          English Edition (Much harder then the French one)                   
           """)
 
 
