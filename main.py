@@ -1,42 +1,49 @@
 import ui
 from wikipediaPage import wikipediaPage
 import requests
+from yaspin import yaspin
+from yaspin.spinners import Spinners
 
 # varriable declarations
 game = True
 roundNumber = 1
 randomArticleUrl = "https://en.wikipedia.org/wiki/Special:Random"
-baseArticleUrl = "https://en.wikipedia.org/"
+baseArticleUrl = "https://en.wikipedia.org"
 
 urlStackTrace = []
 
-#initial pages
+ui.startText()
+spinner = yaspin(Spinners.circleHalves, text="Loading...") #spinner
+spinner.start()
+# initial pages
 startPage = wikipediaPage(randomArticleUrl)
 goalPage = wikipediaPage(randomArticleUrl)
-currentpage = startPage # only for the start
-
 urlStackTrace.append(startPage)
-print(urlStackTrace)
+spinner.stop()
 
-ui.startText()
 
 def goToNextLink(currentpage, int):
-    print("Going to next page")
-    nextlink = currentpage.allLinksList[int].get('href')
+    nextlink = currentpage.getAllLinksList()[int].get('href')
     url = baseArticleUrl+nextlink
-    currentpage = wikipediaPage(url)
+    urlStackTrace.append(wikipediaPage(url))
+
 
 while game:
     ui.roundText(roundNumber)
-    print("Start page :", startPage.title.contents[0])
-    print("Goal page :", goalPage.title.contents[0])
-    print("Current page :", currentpage.title.contents[0])
-    currentpage.printLinkOptions()
+    print("Start page :", startPage.getTitle().contents[0], startPage.getUrl())
+    print("Goal page :", goalPage.getTitle().contents[0], goalPage.getUrl())
+    print("Current page :", urlStackTrace[-1].getTitle().contents[0], urlStackTrace[-1].getUrl())
+    urlStackTrace[-1].printLinkOptions()
     choice = ""
     # main loop
     while choice == "":
         choice = input("Your choice : ")
-        goToNextLink(currentpage, int(choice))
         if choice == "exit":
             exit(0)
+        spinner.start()
+        goToNextLink(urlStackTrace[-1], int(choice))
+    if goalPage.getUrl() == urlStackTrace[-1].getUrl() :
+        print("victory")
+        game = False
     roundNumber = roundNumber + 1
+    spinner.stop()
