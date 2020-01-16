@@ -3,6 +3,7 @@ import urllib.request
 import sys
 from yaspin import yaspin
 
+
 class wikipediaPage():
     def __init__(self, url):
         self.__url = url
@@ -31,6 +32,7 @@ class wikipediaPage():
             x.decompose()
         for x in soup.find_all(True, {'id': ['footer', 'toc', 'mw-panel', 'mw-head', 'catlinks']}):
             x.decompose()
+
         # all paragraphs
         all_links = soup.select('p a[href^="/wiki"]')
         # seests all the table
@@ -43,7 +45,10 @@ class wikipediaPage():
         self.__allLinksList = all_links
 
     def getPageTitle(self):
-        self.__title = self.__rawPageContent.find('h1')
+        temp = str(self.__rawPageContent.find('h1').contents[0])
+        temp = temp.replace('<i>', '')
+        temp = temp.replace('</i>', '')
+        self.__title = temp
 
     def printLinkOptions(self):
         for idx, val in enumerate(self.__allLinksList):
@@ -57,10 +62,13 @@ class wikipediaPage():
             self.printLinkOptions()
 
     def getTitle(self):
-        return self.__title.contents[0]
+        return self.__title
 
-    def getAllLinksList(self):
-        return self.__allLinksList
+    def getOnlyLinksList(self):
+        temp = []
+        for idx, val in enumerate(self.__allLinksList):
+            temp.append(val.contents[0])
+        return temp
 
     def getUrl(self):
         return self.__url
