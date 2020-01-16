@@ -1,8 +1,11 @@
+from __future__ import print_function	# For Py2/3 compatibility
+
 import ui
 from wikipediaPage import wikipediaPage
 import requests
 from yaspin import yaspin
 from yaspin.spinners import Spinners
+import eel
 
 # varriable declarations
 game = True
@@ -11,6 +14,10 @@ randomArticleUrl = "https://en.wikipedia.org/wiki/Special:Random"
 baseArticleUrl = "https://en.wikipedia.org"
 
 urlStackTrace = []
+
+eel.init('web')
+eel.start('index.html', mode ='chrome-app')
+
 
 ui.startText()
 spinner = yaspin(Spinners.circleHalves, text="Loading...")  # spinner
