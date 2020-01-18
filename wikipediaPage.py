@@ -3,7 +3,6 @@ import urllib.request
 import sys
 from yaspin import yaspin
 
-
 class wikipediaPage():
     def __init__(self, url):
         self.__url = url

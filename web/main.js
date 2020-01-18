@@ -1,3 +1,14 @@
+var roundNumber = 1;
+
+eel.expose(getRoundNumber);//makes it available in python
+function getRoundNumber() {
+    return roundNumber
+}
+
+eel.expose(addRoundNumber);//makes it available in python
+function addRoundNumber() {
+    roundNumber = roundNumber + 1
+}
 
 eel.expose(printInPageSting);//makes it available in python
 function printInPageSting(x) {
@@ -14,9 +25,9 @@ function printInPageList(x) {
     x.forEach(print);
 }
 function print(element, index) {
-    document.getElementById("choiceList").innerHTML += 
-    `<li><button class=\"btn btn-primary\" onclick=\" goToNextPage(${index})\">${element}</button></li>`
-} 
+    document.getElementById("choiceList").innerHTML +=
+        `<li><button class=\"btn btn-primary\" onclick=\" goToNextPage(${index})\">${element}</button></li>`
+}
 
 eel.expose(updateCurrentPage);//makes it available in python
 function updateCurrentPage(x) {
@@ -41,8 +52,12 @@ function updateRoundNumber(x) {
     document.getElementById("roundCounter").innerHTML = "Round " + x;
 }
 
-function goToNextPage(currentpage,index) {
-    eel.goToNextLink(currentpage,index)
+function goToNextPage(currentpage, index) {
+    eel.goToNextLink(currentpage, index)
+}
+
+function goToPrevPage() {
+    eel.goToPrevLink()
 }
 
 eel.selectlink("Javascript World!");
