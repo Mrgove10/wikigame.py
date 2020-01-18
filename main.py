@@ -8,12 +8,14 @@ import eel
 urlStackTrace = []
 language = "en"
 randomArticleUrl = "https://"+language+".wikipedia.org/wiki/Special:Random"
-baseArticleUrl = "https://"+language+".wikipedia.org/wiki/"
+baseArticleUrl = "https://"+language+".wikipedia.org"
 # initial pages
 startPage = wikipediaPage(randomArticleUrl)
+print("startPage", startPage.getUrl())
 goalPage = wikipediaPage(randomArticleUrl)
+print("goalPage", goalPage.getUrl())
 urlStackTrace.append(startPage)
-startPage.printLinkNames()
+startPage.printLinkNamesConsole()
 # Set web files folder
 eel.init('web', allowed_extensions=['.js', '.html'])
 
@@ -24,8 +26,7 @@ def goToNextLink(idx):
     url = baseArticleUrl+nextlink
     print("going to ", url)
     urlStackTrace.append(wikipediaPage(url))
-    eel.addRoundNumber()
-    eel.updateRoundNumber()
+    update()
 
 
 @eel.expose
@@ -34,7 +35,13 @@ def goToPrevLink():
     url = baseArticleUrl+old
     print("going back to ", url)
     urlStackTrace.append(wikipediaPage(url))
+    update()
+
+def update():
     eel.addRoundNumber()
+    eel.clearPageList()
+    eel.printInPageList(urlStackTrace[-1].getOnlyLinksListJS())
+    eel.updateCurrentPage([goalPage.getTitle(), goalPage.getUrl()])
     eel.updateRoundNumber()
 
 # todo implement in the web page
@@ -51,7 +58,7 @@ def startGame():
     eel.updateGoalPage([goalPage.getTitle(), goalPage.getUrl()])
     eel.updateCurrentPage(
         [urlStackTrace[-1].getTitle(), urlStackTrace[-1].getUrl()])
-    eel.printInPageList(urlStackTrace[-1].getOnlyLinksList())
+    eel.printInPageList(urlStackTrace[-1].getOnlyLinksListJS())
     
 
 # Start the app

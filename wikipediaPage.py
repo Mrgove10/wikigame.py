@@ -62,14 +62,14 @@ class wikipediaPage():
         temp = temp.replace('</i>', '')
         self.__title = temp
 
-    def printLinkNames(self):
+    def printLinkNamesConsole(self):
         """
         Print in the console all the link options
         """
         for idx, val in enumerate(self.__allLinksList):
             print(idx, ":", val.contents[0])
 
-    def printFirstTenLinkNames(self):
+    def printFirstTenLinkNamesConsole(self):
         """
         Print in the console the 10 first link names
         """
@@ -77,7 +77,7 @@ class wikipediaPage():
             for i in range(10):
                 print(i, ":", self.__allLinksList[i].contents[0])
         else:
-            self.printLinkNames()
+            self.printLinkNamesConsole()
 
     def getTitle(self):
         """
@@ -85,7 +85,7 @@ class wikipediaPage():
         """
         return self.__title
 
-    def getOnlyLinksList(self):
+    def getOnlyLinksListJS(self):
         """
         returns the links as a list
         used in JS side
