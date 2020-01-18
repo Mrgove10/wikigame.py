@@ -13,14 +13,14 @@ baseArticleUrl = "https://"+language+".wikipedia.org/wiki/"
 startPage = wikipediaPage(randomArticleUrl)
 goalPage = wikipediaPage(randomArticleUrl)
 urlStackTrace.append(startPage)
-
+startPage.printLinkNames()
 # Set web files folder
 eel.init('web', allowed_extensions=['.js', '.html'])
 
 
 @eel.expose
 def goToNextLink(idx):
-    nextlink = urlStackTrace[-1].getOnlyLinksList()[idx]
+    nextlink = urlStackTrace[-1].getRawList()[idx].get('href')
     url = baseArticleUrl+nextlink
     print("going to ", url)
     urlStackTrace.append(wikipediaPage(url))
@@ -30,14 +30,14 @@ def goToNextLink(idx):
 
 @eel.expose
 def goToPrevLink():
-    old = urlStackTrace[-2].get('href')
-    url = baseArticleUrl+nextlink
+    old = urlStackTrace[-2].getRawList().get('href')
+    url = baseArticleUrl+old
     print("going back to ", url)
     urlStackTrace.append(wikipediaPage(url))
     eel.addRoundNumber()
     eel.updateRoundNumber()
 
-
+# todo implement in the web page
 def printPath():
     print("This is the path you took :")
     for idx, val in enumerate(urlStackTrace):
@@ -52,7 +52,7 @@ def startGame():
     eel.updateCurrentPage(
         [urlStackTrace[-1].getTitle(), urlStackTrace[-1].getUrl()])
     eel.printInPageList(urlStackTrace[-1].getOnlyLinksList())
-
+    
 
 # Start the app
 eel.start('index.html', mode='chrome-app')
