@@ -48,12 +48,12 @@ function updateGoalPage(x) {
 }
 
 eel.expose(updateRoundNumber);//makes it available in python
-function updateRoundNumber(x) {
-    document.getElementById("roundCounter").innerHTML = "Round " + x;
+function updateRoundNumber() {
+    document.getElementById("roundCounter").innerHTML = "Round " + roundNumber;
 }
 
-function goToNextPage(currentpage, index) {
-    eel.goToNextLink(currentpage, index)
+function goToNextPage(index) {
+    eel.goToNextLink(index)
 }
 
 function goToPrevPage() {

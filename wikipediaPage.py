@@ -3,18 +3,25 @@ import urllib.request
 import sys
 from yaspin import yaspin
 
+
 class wikipediaPage():
     def __init__(self, url):
+        """
+        init methode
+        """
         self.__url = url
         self.__title = ""
         self.__rawPageContent = ""
         self.__allLinksList = []
         # calls the needed methodes
         self.getRawPageContent()
-        self.getAllLinks()
+        self.getAllLinksInPage()
         self.getPageTitle()
 
     def getRawPageContent(self):
+        """
+        Gets the raw content of the page
+        """
         req = urllib.request.Request(
             url=self.__url,
             headers={'User-Agent': ' Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0'})
@@ -24,7 +31,10 @@ class wikipediaPage():
             self.__rawPageContent = soup
             self.__url = handler.geturl()  # sets the correct adress
 
-    def getAllLinks(self):
+    def getAllLinksInPage(self):
+        """
+        uses beautifusoup to retreive all the links in a page
+        """
         soup = self.__rawPageContent
         # selects all the pragraphs
         for x in soup.find_all(True, {'class': ['IPA', 'external', 'internal', 'citation book', 'plainlinks', 'nowrap', 'portal', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox']}):
@@ -44,16 +54,25 @@ class wikipediaPage():
         self.__allLinksList = all_links
 
     def getPageTitle(self):
+        """
+        Gets the page title of the page as a string
+        """
         temp = str(self.__rawPageContent.find('h1').contents[0])
         temp = temp.replace('<i>', '')
         temp = temp.replace('</i>', '')
         self.__title = temp
 
     def printLinkOptions(self):
+        """
+        Print in the console all the link options
+        """
         for idx, val in enumerate(self.__allLinksList):
             print(idx, ":", val.contents[0])
 
     def printFirstTenLinkOptions(self):
+        """
+        Print in the console the 10 first links
+        """
         if len(self.__allLinksList) > 10:
             for i in range(10):
                 print(i, ":", self.__allLinksList[i].contents[0])
@@ -61,13 +80,22 @@ class wikipediaPage():
             self.printLinkOptions()
 
     def getTitle(self):
+        """
+        use getPageTitle() insteed
+        """
         return self.__title
 
     def getOnlyLinksList(self):
+        """
+        returns the links as a list
+        """
         temp = []
         for idx, val in enumerate(self.__allLinksList):
             temp.append(val.contents[0])
         return temp
 
     def getUrl(self):
+        """
+        gets the page url
+        """
         return self.__url
