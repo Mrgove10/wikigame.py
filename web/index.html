@@ -2,9 +2,11 @@
 <html>
 
 <head>
-    <title>WikiGame</title>
+    <title>WikiGame.py</title>
     <!-- Include eel.js - note this file doesn't exist in the 'web' directory -->
     <script type="text/javascript" src="/eel.js"></script>
+    <!-- Custom css -->
+    <link rel="stylesheet" href="css/main.css">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -22,22 +24,40 @@
 
 <body>
     <div class="container-fluid">
-        <h1>WikiGame</h1>
-        <p>find the second page in the less possible moves</p>
-        <H4 id="roundCounter">Round X</H4>
-        <p id="startPage">Start page</p>
-        <p id="goalPage">Goal page</p>
-        <p id="currentPage">Current page</p>
-        <button class="btn btn-info" onclick="goToPrevPage()"> Go Back one page </button>
-        <div id="mainbody">
-            <ul id="choiceList"></ul>
+        <h1>WikiGame.py</h1>
+        <p>find the goal page in the less possible moves</p>
+        <div class="row">
+            <div class="col col-md-8">
+                <p id="startPage">Start page</p>
+                <p id="goalPage">Goal page</p>
+                <p id="currentPage">Current page</p>
+                <div id="mainbody">
+                    <ul id="choiceList"></ul>
+                </div>
+            </div>
+            <div class="col col-md-4">
+                <H4 id="roundCounter"></H4>
+                <h6>Your page history</h6>
+                <ol id="history"></ol>
+                <button class="btn btn-info" onclick="goToPrevPage()"> Go Back one page </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="width: 48px">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
         </div>
     </div>
 </body>
 
 <footer>
-    <script type="text/javascript" src="main.js"></script>
-    <script type="text/javascript" src="ui.js"></script>
+    <!-- Custom JS scripts -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
     <script>
         eel.startGame(); // starts the game
     </script>

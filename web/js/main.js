@@ -2,14 +2,13 @@ var roundNumber = 1;
 
 eel.expose(getRoundNumber);//makes it available in python
 function getRoundNumber() {
-    return roundNumber
+    return roundNumber  
 }
 
 eel.expose(addRoundNumber);//makes it available in python
 function addRoundNumber() {
     roundNumber = roundNumber + 1
 }
-
 
 eel.expose(printInConsole);
 function printInConsole(x) {
@@ -30,5 +29,3 @@ function goToNextPage(index) {
 function goToPrevPage() {
     eel.goToPrevLink()
 }
-
-eel.selectlink("Javascript World!");

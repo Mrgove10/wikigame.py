@@ -38,6 +38,7 @@ function updateRoundNumber() {
  */
 eel.expose(printInPageList);//makes it available in python
 function printInPageList(x) {
+    document.getElementById("choiceList").innerHTML = ``
     x.forEach(print);
 }
 function print(element, index) {
@@ -46,9 +47,30 @@ function print(element, index) {
 }
 
 /**
- * clears allt he links in the page
+ * Updates the history list
  */
-eel.expose(clearPageList);//makes it available in python
-function clearPageList() {
-    document.getElementById("choiceList").innerHTML = ``
+eel.expose(updateHistory);
+function updateHistory(x) {
+    document.getElementById("history").innerHTML = ``
+    x.forEach(element => {
+        document.getElementById("history").innerHTML += `<li>${element}</li>`
+    });
+}
+
+/**
+ * Show the loading modal on the screen
+ */
+eel.expose(showLoader);
+function showLoader() {
+    console.log("shiwing")
+    $('.modal').modal('show');
+}
+
+/**
+ * Hides the loading modal on screen
+ */
+eel.expose(hideLoader);
+function hideLoader() {
+    console.log("hiding")
+    $('.modal').modal('hide');
 }
