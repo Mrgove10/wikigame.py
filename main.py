@@ -12,10 +12,9 @@ randomArticleUrl = "https://"+language+".wikipedia.org/wiki/Special:Random"
 baseArticleUrl = "https://"+language+".wikipedia.org"
 # initial pages
 startPage = wikipediaPage(randomArticleUrl)
-print("startPage", startPage.getUrl())
-print(startPage.getFirstSentence())
+#print("startPage", startPage.getUrl())
 goalPage = wikipediaPage(randomArticleUrl)
-print("goalPage", goalPage.getUrl())
+#print("goalPage", goalPage.getUrl())
 urlStackTrace.append(startPage)
 # Set web files folder
 eel.init('web', allowed_extensions=['.js', '.html'])
@@ -58,6 +57,7 @@ def update():
     eel.printInPageList(urlStackTrace[-1].getOnlyLinksListJS())
     eel.updateCurrentPage(
         [urlStackTrace[-1].getTitle(), urlStackTrace[-1].getUrl()])
+    eel.updateCurrentPageDescription(urlStackTrace[-1].getFirstSentence())
     eel.updateRoundNumber()
     eel.updateHistory(getHistory())
     # we need to do this because overwise the JS is not fat egoth to respond so we get an infinit loading
@@ -81,10 +81,17 @@ def startGame():
     function used to launch the game
     """
     eel.updateRoundNumber()
+    
     eel.updateStartPage([startPage.getTitle(), startPage.getUrl()])
+    eel.updateStartPageDescription(startPage.getFirstSentence())
+
     eel.updateGoalPage([goalPage.getTitle(), goalPage.getUrl()])
+    eel.updateGoalPageDescription(goalPage.getFirstSentence())
+    
     eel.updateCurrentPage(
         [urlStackTrace[-1].getTitle(), urlStackTrace[-1].getUrl()])
+    eel.updateCurrentPageDescription(urlStackTrace[-1].getFirstSentence())
+
     eel.printInPageList(urlStackTrace[-1].getOnlyLinksListJS())
 
 

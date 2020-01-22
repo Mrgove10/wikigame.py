@@ -1,29 +1,55 @@
+//==========
 /**
  * updates the current page text
  */
 eel.expose(updateCurrentPage);//makes it available in python
 function updateCurrentPage(x) {
     document.getElementById("currentPage").innerHTML =
-        `${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
+        `${x[0]} <br><a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
 }
 
+/**
+ * Updates the current page description.
+ */
+eel.expose(updateCurrentPageDescription);//makes it available in python
+function updateCurrentPageDescription(x) {
+    document.getElementById("currentPageDesc").innerHTML = `${x}`
+}
+//==========
 /**
  * updates the start page text
  */
 eel.expose(updateStartPage);//makes it available in python
 function updateStartPage(x) {
     document.getElementById("startPage").innerHTML =
-        `${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
+        `${x[0]} <br><a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
 }
 
+/**
+ * Updates the description of the start page
+ */
+eel.expose(updateStartPageDescription);//makes it available in python
+function updateStartPageDescription(x) {
+    document.getElementById("startPageDesc").innerHTML = `${x}`
+}
+//==========
 /**
  * updates the goal page text
  */
 eel.expose(updateGoalPage);//makes it available in python
 function updateGoalPage(x) {
     document.getElementById("goalPage").innerHTML =
-        `${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
+        `${x[0]} <br><a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
 }
+
+/**
+ * Updates the Goal page description
+ */
+eel.expose(updateGoalPageDescription);//makes it available in python
+function updateGoalPageDescription(x) {
+    document.getElementById("goalPageDesc").innerHTML = `${x}`
+}
+//==========
 
 /**
  * Updates the round number on the html page
