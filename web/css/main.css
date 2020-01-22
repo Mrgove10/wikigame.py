@@ -8,15 +8,20 @@ html {
     background-image: url("/img/logo.png");
     /* Full height */
     height: 100%;
-
+    width: 100%;
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: 99;
-}*/
+    position: absolute;
+    z-index: -1;
+    /*effects*/
+    /* Add the blur effect */
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
+}
 
-.bd-example-modal-lg .modal-dialog {
+*/ .bd-example-modal-lg .modal-dialog {
     display: table;
     position: relative;
     margin: 0 auto;
