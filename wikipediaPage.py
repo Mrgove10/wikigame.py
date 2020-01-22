@@ -68,13 +68,6 @@ class wikipediaPage():
         text = self.__rawPageContent.find('p',attrs={'class': None}).get_text()
         text = text.partition('.')[0] + '.'
         return text
-    
-    def getFirstP(self):
-        """
-        Gets the firsqt sentence of the page
-        """
-        text = self.__rawPageContent.find('p').get_text()
-        return text
         
     def printLinkNamesConsole(self):
         """
