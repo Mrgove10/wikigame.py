@@ -4,7 +4,7 @@
 eel.expose(updateCurrentPage);//makes it available in python
 function updateCurrentPage(x) {
     document.getElementById("currentPage").innerHTML =
-        `<b>Current page :</b> ${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
+        `${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
 }
 
 /**
@@ -13,7 +13,7 @@ function updateCurrentPage(x) {
 eel.expose(updateStartPage);//makes it available in python
 function updateStartPage(x) {
     document.getElementById("startPage").innerHTML =
-        `<b>Start page :</b> ${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
+        `${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
 }
 
 /**
@@ -22,7 +22,7 @@ function updateStartPage(x) {
 eel.expose(updateGoalPage);//makes it available in python
 function updateGoalPage(x) {
     document.getElementById("goalPage").innerHTML =
-        `<b>Goal page :</b> ${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
+        `${x[0]} <a href="${x[1]}" target="_blank">View Wikipedia Page</a>`
 }
 
 /**

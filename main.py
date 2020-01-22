@@ -13,10 +13,10 @@ baseArticleUrl = "https://"+language+".wikipedia.org"
 # initial pages
 startPage = wikipediaPage(randomArticleUrl)
 print("startPage", startPage.getUrl())
+print(startPage.getFirstSentence())
 goalPage = wikipediaPage(randomArticleUrl)
 print("goalPage", goalPage.getUrl())
 urlStackTrace.append(startPage)
-startPage.printLinkNamesConsole()
 # Set web files folder
 eel.init('web', allowed_extensions=['.js', '.html'])
 
@@ -49,18 +49,22 @@ def goToPrevLink():
     urlStackTrace.append(wikipediaPage(old))
     update()
 
+
 def update():
     """
     lanches all the things we do in between pages
     """
     eel.addRoundNumber()
     eel.printInPageList(urlStackTrace[-1].getOnlyLinksListJS())
-    eel.updateCurrentPage([urlStackTrace[-1].getTitle(), urlStackTrace[-1].getUrl()])
+    eel.updateCurrentPage(
+        [urlStackTrace[-1].getTitle(), urlStackTrace[-1].getUrl()])
     eel.updateRoundNumber()
     eel.updateHistory(getHistory())
-    time.sleep(0.25) #we need to do this because overwise the JS is not fat egoth to respond so we get an infinit loading 
+    # we need to do this because overwise the JS is not fat egoth to respond so we get an infinit loading
+    time.sleep(0.25)
     eel.hideLoader()
-    
+
+
 def getHistory():
     """
     Gets the history of the pages the user has visited
@@ -69,6 +73,7 @@ def getHistory():
     for idx, val in enumerate(urlStackTrace):
         temp.append(val.getTitle())
     return temp
+
 
 @eel.expose
 def startGame():
@@ -81,6 +86,7 @@ def startGame():
     eel.updateCurrentPage(
         [urlStackTrace[-1].getTitle(), urlStackTrace[-1].getUrl()])
     eel.printInPageList(urlStackTrace[-1].getOnlyLinksListJS())
+
 
 # Start the app
 eel.start('index.html', mode='chrome-app')

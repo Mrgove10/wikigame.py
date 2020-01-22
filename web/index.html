@@ -25,17 +25,62 @@
 <body>
     <div class="container-fluid">
         <h1>WikiGame.py</h1>
-        <p>find the goal page in the less possible moves</p>
+        <p>Find the goal page in the less possible moves</p>
         <div class="row">
-            <div class="col col-md-8">
-                <p id="startPage">Start page</p>
-                <p id="goalPage">Goal page</p>
-                <p id="currentPage">Current page</p>
+            <div class="col col-md-9">
+                <div class="row">
+                    <!--StartPage-->
+                    <div class="col col-md">
+                        <div class="card" style="width: 25rem;">
+                            <!-- <img src="..." class="card-img-top" alt="...">-->
+                            <div class="card-body">
+                                <h5 class="card-title">Starting Page</h5>
+                                <b>
+                                    <h6 id="startPage"></h6>
+                                </b>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--CurrentPage-->
+                    <div class="col col-md">
+                        <div class="card" style="width: 25rem;">
+                            <!-- <img src="..." class="card-img-top" alt="...">-->
+                            <div class="card-body">
+                                <h5 class="card-title">Current Page</h5>
+                                <b>
+                                    <h6 id="currentPage"></h6>
+                                </b>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--GoalPage-->
+                    <div class="col col-md">
+                        <div class="card" style="width: 25rem;">
+                            <!-- <img src="..." class="card-img-top" alt="...">-->
+                            <div class="card-body">
+                                <h5 class="card-title">Goal Page</h5>
+                                <b>
+                                    <h6 id="goalPage"></h6>
+                                </b>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk
+                                    of the card's content.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input />
                 <div id="mainbody">
                     <ul id="choiceList"></ul>
                 </div>
             </div>
-            <div class="col col-md-4">
+            <div class="col col-md-3">
                 <H4 id="roundCounter"></H4>
                 <h6>Your page history</h6>
                 <ol id="history"></ol>
@@ -46,7 +91,7 @@
     <div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-sm">
             <div class="modal-content" style="width: 48px">
-                <div class="spinner-border text-primary" role="status">
+                <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>

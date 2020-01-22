@@ -62,6 +62,15 @@ class wikipediaPage():
         temp = temp.replace('</i>', '')
         self.__title = temp
 
+
+    def getFirstSentence(self):
+        """
+        Gets the firsqt sentence of the page
+        """
+        text = self.__rawPageContent.find('p').get_text()
+        text = text.partition('.')[0] + '.'
+        return text
+        
     def printLinkNamesConsole(self):
         """
         Print in the console all the link options
