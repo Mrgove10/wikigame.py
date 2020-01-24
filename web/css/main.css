@@ -21,7 +21,12 @@ html {
     -webkit-filter: blur(20px);
 }
 
-*/ .bd-example-modal-lg .modal-dialog {
+.btn {
+    margin: 3px;
+    padding: 3px;
+}
+
+.bd-example-modal-lg .modal-dialog {
     display: table;
     position: relative;
     margin: 0 auto;

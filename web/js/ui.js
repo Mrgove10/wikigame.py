@@ -60,7 +60,7 @@ function updateRoundNumber() {
 }
 
 /**
- * prints all the pinks as buttons
+ * prints all the links as buttons
  */
 eel.expose(printInPageList);//makes it available in python
 function printInPageList(x) {
@@ -69,7 +69,7 @@ function printInPageList(x) {
 }
 function print(element, index) {
     document.getElementById("choiceList").innerHTML +=
-        `<li><button class=\"btn btn-primary\" onclick=\" goToNextPage(${index})\">${element}</button></li>`
+        `<button class=\"btn btn-primary\" onclick=\" goToNextPage(${index})\">${element}</button>`
 }
 
 /**
