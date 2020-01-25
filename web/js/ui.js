@@ -88,8 +88,7 @@ function updateHistory(x) {
  */
 eel.expose(showLoader);
 function showLoader() {
-    console.log("shiwing")
-    $('.modal').modal('show');
+    $('#loadingmodal').modal('show');
 }
 
 /**
@@ -97,6 +96,13 @@ function showLoader() {
  */
 eel.expose(hideLoader);
 function hideLoader() {
-    console.log("hiding")
-    $('.modal').modal('hide');
+    $('#loadingmodal').modal('hide');
+}
+
+/**
+ * Show the end page
+ */
+eel.expose(showvictory);
+function showvictory() {
+    $('#vistory').modal('show');
 }

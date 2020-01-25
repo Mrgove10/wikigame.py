@@ -39,8 +39,6 @@ class wikipediaPage():
             x.decompose()
         for x in soup.find_all(True, {'id': ['footer', 'toc', 'mw-panel', 'mw-head', 'catlinks']}):
             x.decompose()
-        for x in soup.find_all('bdi'):
-            x.decompose()
         # all paragraphs
         all_links = soup.select('p a[href^="/wiki"]')
         # seests all the table

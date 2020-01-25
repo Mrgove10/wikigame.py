@@ -67,7 +67,6 @@
                         </div>
                     </div>
                 </div>
-               <!-- <input />-->
                 <!--List of choices-->
                 <div id="mainbody">
                     <div id="choiceList"></div>
@@ -79,10 +78,32 @@
                 <ol id="history"></ol>
                 <button class="btn btn-info" onclick="goToPrevPage()"> Go Back one page </button>
             </div>
+
+        </div>
+    </div>
+    <!--end page-->
+    <div id="#vistory" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Victory !!!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Well done, finished in XXXXXX Rounds</p>
+                </div>
+                <!--<div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>-->
+            </div>
         </div>
     </div>
     <!--Loading page-->
-    <div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div id="loadingmodal" class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false"
+        tabindex="-1">
         <div class="modal-dialog modal-sm">
             <div class="modal-content" style="width: 48px">
                 <div class="spinner-border" role="status">
@@ -98,6 +119,7 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/ui.js"></script>
     <script>
+        showLoader()
         eel.startGame(); // starts the game
     </script>
 </footer>
