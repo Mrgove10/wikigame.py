@@ -10,12 +10,12 @@ urlStackTrace = []
 language = "en"
 baseArticleUrl = "https://"+language+".wikipedia.org"
 randomArticleUrl = baseArticleUrl+"/wiki/Special:Random"
-testArticleOne = baseArticleUrl+"/wiki/Apple_Inc."
+TestArticleOne = baseArticleUrl+"/wiki/Apple_Inc."
 testArticleTwo = baseArticleUrl+"/wiki/IPhone"
 
 # initial pages
-startPage = wikipediaPage(testArticleOne)
-goalPage = wikipediaPage(testArticleTwo)
+startPage = wikipediaPage(randomArticleUrl)
+goalPage = wikipediaPage(randomArticleUrl)
 wikiPageStackTrace.append(startPage)
 titleStackTrace.append(startPage.getTitle())
 urlStackTrace.append(startPage.getUrl())
@@ -96,19 +96,21 @@ def startGame():
     """
     function used to launch the game
     """
+    #roundnumber
     eel.updateRoundNumber()
-
+    # start page
     eel.updateStartPage([startPage.getTitle(), startPage.getUrl()])
     eel.updateStartPageDescription(startPage.getFirstSentence())
-
+    # goal page
     eel.updateGoalPage([goalPage.getTitle(), goalPage.getUrl()])
     eel.updateGoalPageDescription(goalPage.getFirstSentence())
-
+    # ui updates
     eel.updateCurrentPage(
         [wikiPageStackTrace[-1].getTitle(), wikiPageStackTrace[-1].getUrl()])
     eel.updateCurrentPageDescription(wikiPageStackTrace[-1].getFirstSentence())
-
     eel.printInPageList(wikiPageStackTrace[-1].getOnlyLinksListJS())
+    # loader
+    time.sleep(0.5)
     eel.hideLoader()
 
 

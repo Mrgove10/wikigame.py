@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
-import urllib.request
+from urllib.request import urlopen, Request
 import sys
+
 
 class wikipediaPage():
     def __init__(self, url):
@@ -20,10 +21,10 @@ class wikipediaPage():
         """
         Gets the raw content of the page
         """
-        req = urllib.request.Request(
+        req = Request(
             url=self.__url,
             headers={'User-Agent': ' Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0'})
-        handler = urllib.request.urlopen(req)
+        handler = urlopen(req)
         with handler as response:
             soup = BeautifulSoup(response, 'html.parser')
             self.__rawPageContent = soup
@@ -35,7 +36,7 @@ class wikipediaPage():
         """
         soup = self.__rawPageContent
         # selects all the pragraphs
-        for x in soup.find_all(True, {'class': ['IPA','external text', 'external', 'internal', 'citation book', 'plainlinks', 'nowrap', 'portal', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox']}):
+        for x in soup.find_all(True, {'class': ['IPA', 'external text', 'external', 'internal', 'citation book', 'plainlinks', 'nowrap', 'portal', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox']}):
             x.decompose()
         for x in soup.find_all(True, {'id': ['footer', 'toc', 'mw-panel', 'mw-head', 'catlinks']}):
             x.decompose()
@@ -59,15 +60,15 @@ class wikipediaPage():
         temp = temp.replace('</i>', '')
         self.__title = temp
 
-
     def getFirstSentence(self):
         """
         Gets the firsqt sentence of the page
         """
-        text = self.__rawPageContent.find('p',attrs={'class': None}).get_text()
-        text = text.partition('.')[1] + '.'
+        text = self.__rawPageContent.find(
+            'p', attrs={'class': None}).get_text()
+        text = text.partition('.')[0] + '.'
         return text
-        
+
     def printLinkNamesConsole(self):
         """
         Print in the console all the link options
@@ -108,7 +109,7 @@ class wikipediaPage():
         return self.__url
 
     def getRawList(self):
-            """
-            gets the page url
-            """
-            return self.__allLinksList
+        """
+        gets the page url
+        """
+        return self.__allLinksList
