@@ -35,11 +35,12 @@ class wikipediaPage():
         """
         soup = self.__rawPageContent
         # selects all the pragraphs
-        for x in soup.find_all(True, {'class': ['IPA', 'external', 'internal', 'citation book', 'plainlinks', 'nowrap', 'portal', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox']}):
+        for x in soup.find_all(True, {'class': ['IPA','external text', 'external', 'internal', 'citation book', 'plainlinks', 'nowrap', 'portal', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox']}):
             x.decompose()
         for x in soup.find_all(True, {'id': ['footer', 'toc', 'mw-panel', 'mw-head', 'catlinks']}):
             x.decompose()
-
+        for x in soup.find_all('bdi'):
+            x.decompose()
         # all paragraphs
         all_links = soup.select('p a[href^="/wiki"]')
         # seests all the table
