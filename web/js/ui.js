@@ -102,7 +102,7 @@ function hideLoader() {
 /**
  * Show the end page
  */
-eel.expose(showvictory);
-function showvictory() {
-    $('#vistory').modal('show');
+eel.expose(showVictory);
+function showVictory() {
+    $('#victory').modal('show');
 }

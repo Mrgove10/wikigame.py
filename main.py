@@ -3,7 +3,7 @@ from wikipediaPage import wikipediaPage
 import eel
 import time
 
-#Variables
+# Variables
 wikiPageStackTrace = []  # List of the wikipedia objects
 titleStackTrace = []  # list of the title of the pages
 urlStackTrace = []
@@ -20,7 +20,8 @@ wikiPageStackTrace.append(startPage)
 titleStackTrace.append(startPage.getTitle())
 urlStackTrace.append(startPage.getUrl())
 
-eel.init('web', allowed_extensions=['.js', '.html'])# Set web files folder
+eel.init('web', allowed_extensions=['.js', '.html'])  # Set web files folder
+
 
 @eel.expose
 def goToNextLink(idx):
@@ -43,7 +44,6 @@ def goToPrevLink():
     """
     Goes back one page in the history
     """
-    eel.showLoader()
     if wikiPageStackTrace[-2].getUrl() != "":
         oldpage = wikiPageStackTrace[-2]
         print("going back to ", oldpage.getUrl())
@@ -60,14 +60,22 @@ def update():
     lanches all the things we do in between pages
     """
     print("current page is ", wikiPageStackTrace[-1].getTitle())
-    if not checkIfVictory(urlStackTrace[-1], goalPage.getUrl()):
+    if wikiPageStackTrace[-1].getUrl() != goalPage.getUrl():  # no victory
         eel.addRoundNumber()
         eel.printInPageList(wikiPageStackTrace[-1].getOnlyLinksListJS())
         eel.updateCurrentPage(
             [wikiPageStackTrace[-1].getTitle(), wikiPageStackTrace[-1].getUrl()])
-        eel.updateCurrentPageDescription(wikiPageStackTrace[-1].getFirstSentence())
+        eel.updateCurrentPageDescription(
+            wikiPageStackTrace[-1].getFirstSentence())
         eel.updateRoundNumber()
         eel.updateHistory(getHistoryTitles())
+        eel.hideLoader()
+    elif wikiPageStackTrace[-1].getUrl() == goalPage.getUrl():  # victory
+        eel.hideLoader()
+        eel.addRoundNumber()
+        eel.updateRoundNumber()
+        eel.updateHistory(getHistoryTitles())
+        eel.showVictory()
     # we need to do this because overwise the JS is not fat egoth to respond so we get an infinit loading
     time.sleep(0.5)
     eel.hideLoader()
@@ -81,16 +89,6 @@ def getHistoryTitles():
     for idx, val in enumerate(titleStackTrace):
         temp.append(val)
     return temp
-
-
-def checkIfVictory(urlCurrentPage, urlGoalPage):
-    """
-    Checks for victory
-    """
-    if urlCurrentPage == urlGoalPage:
-        print("Victory ! ")
-        return true
-    eel.showvictory()
 
 
 @eel.expose

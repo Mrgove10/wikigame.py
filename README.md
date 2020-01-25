@@ -24,7 +24,8 @@ pip install -r requirements.txt
 python main.py
 ```
 
-once lanched, the game should open a new tab in your browser.
+Once lanched, the game should open a new tab in your browser.
+If the page does not open automagicly you can go to http://localhost:8000/index.html on your browser
 
 ## Tested on
 
