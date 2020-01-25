@@ -13,11 +13,9 @@ Warning : This game can be very hard. There are more then 6 000 000 (Jan 2020) a
 pip install -r requirements.txt
 ```
 
-### Used libraries
+### Main libraries used
 
-- [requests](https://github.com/psf/requests)
 - [beautifulsoup4](https://github.com/wention/BeautifulSoup4)
-- [urllib3](https://github.com/urllib3/urllib3)
 - [eel](https://github.com/samuelhwilliams/Eel)
 
 ## To play
@@ -30,7 +28,7 @@ once lanched, the game should open a new tab in your browser.
 
 ## Tested on
 
-|OS|Browser|Works|
-|---|---|---|
-|Windows|Firefox|✅|
-|Linux|Firefox|❌|
+| OS      | Browser | Python Version | Works |
+| ------- | ------- | -------------- | ----- |
+| Windows | Firefox | 3.6.8          | ✅     |
+| Linux   | Firefox | 2.7.16         | ❌     |

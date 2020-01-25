@@ -1,8 +1,5 @@
 from __future__ import print_function  # For Py2/3 compatibility
-from yaspin.spinners import Spinners
-from yaspin import yaspin
 from wikipediaPage import wikipediaPage
-import requests
 import eel
 import time
 
@@ -21,6 +18,7 @@ startPage = wikipediaPage(testArticleOne)
 goalPage = wikipediaPage(testArticleTwo)
 wikiPageStackTrace.append(startPage)
 titleStackTrace.append(startPage.getTitle())
+urlStackTrace.append(startPage.getUrl())
 
 eel.init('web', allowed_extensions=['.js', '.html'])# Set web files folder
 
@@ -36,6 +34,7 @@ def goToNextLink(idx):
     newpage = wikipediaPage(url)
     wikiPageStackTrace.append(newpage)
     titleStackTrace.append(newpage.getTitle())
+    urlStackTrace.append(newpage.getUrl())
     update()
 
 
@@ -45,10 +44,11 @@ def goToPrevLink():
     Goes back one page in the history
     """
     eel.showLoader()
-    if wikiPageStackTrace[-2] != null:
+    if wikiPageStackTrace[-2].getUrl() != "":
         oldpage = wikiPageStackTrace[-2]
         print("going back to ", oldpage.getUrl())
         titleStackTrace.append(oldpage.getTitle())
+        urlStackTrace.append(oldpage.getUrl())
         del wikiPageStackTrace[-1]
         update()
     else:
@@ -60,7 +60,7 @@ def update():
     lanches all the things we do in between pages
     """
     print("current page is ", wikiPageStackTrace[-1].getTitle())
-    if not checkIfVictory(wikiPageStackTrace[-1].getUrl(), goalPage.getUrl()):
+    if not checkIfVictory(urlStackTrace[-1], goalPage.getUrl()):
         eel.addRoundNumber()
         eel.printInPageList(wikiPageStackTrace[-1].getOnlyLinksListJS())
         eel.updateCurrentPage(
@@ -68,9 +68,9 @@ def update():
         eel.updateCurrentPageDescription(wikiPageStackTrace[-1].getFirstSentence())
         eel.updateRoundNumber()
         eel.updateHistory(getHistoryTitles())
-        # we need to do this because overwise the JS is not fat egoth to respond so we get an infinit loading
-        time.sleep(0.5)
-        eel.hideLoader()
+    # we need to do this because overwise the JS is not fat egoth to respond so we get an infinit loading
+    time.sleep(0.5)
+    eel.hideLoader()
 
 
 def getHistoryTitles():
@@ -87,7 +87,6 @@ def checkIfVictory(urlCurrentPage, urlGoalPage):
     """
     Checks for victory
     """
-    #TODO : fix me when going back
     if urlCurrentPage == urlGoalPage:
         print("Victory ! ")
         return true
