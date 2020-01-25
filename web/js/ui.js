@@ -105,4 +105,5 @@ function hideLoader() {
 eel.expose(showVictory);
 function showVictory() {
     $('#victory').modal('show');
+    document.getElementById("finalRounds").innerHTML = roundNumber;
 }
