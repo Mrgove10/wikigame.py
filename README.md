@@ -7,9 +7,13 @@ Try to get to the second page in the less moves possible.
 
 Warning : This game can be very hard. There are more then 6 000 000 (Jan 2020) articles on the english wikipedia website. And the articles are choosen at random ... Good luck, you will need it.
 
-## To install
+Please use **python 3**
 
-To run please use **python 3**
+## General Info
+
+Sometimes you can see "null" as an option, those links can still be clicked. And you know what they say "its not a bug its a feature", just makes the game harder.
+
+## To install
 
 ```bash
 pip3 install -r requirements.txt
@@ -35,3 +39,5 @@ If the page does not open automagicly you can go to http://localhost:8000/index.
 | --------------- | ------- | -------------- | ----- |
 | Windows         | Firefox | 3.6.8          | ✅     |
 | Linux (Pop!_OS) | Firefox | 3.7.3          | ✅     |
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
