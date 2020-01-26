@@ -2,7 +2,6 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 import sys
 
-
 class wikipediaPage():
     def __init__(self, url):
         """
@@ -36,19 +35,33 @@ class wikipediaPage():
         """
         soup = self.__rawPageContent
         # selects all the pragraphs
-        for x in soup.find_all(True, {'class': ['IPA', 'external text', 'external', 'internal', 'citation book', 'plainlinks', 'nowrap', 'portal', 'image', 'navbox', 'infobox_v3', 'infobox_v2', 'infobox']}):
+        for x in soup.find_all(True, {'class': [
+            'IPA', 'external text', 
+            'external', 'internal', 
+            'citation book', 'plainlinks', 
+            'nowrap', 'portal', 'image',
+            'navbox', 'infobox_v3', 
+            'infobox_v2', 'infobox'
+            ]}):
             x.decompose()
-        for x in soup.find_all(True, {'id': ['footer', 'toc', 'mw-panel', 'mw-head', 'catlinks']}):
+        for x in soup.find_all(True, {'id': [
+            'footer', 'toc',
+            'mw-panel', 'mw-head',
+            'catlinks'
+            ]}):
             x.decompose()
         # all paragraphs
         all_links = soup.select('p a[href^="/wiki"]')
         # seests all the table
-        all_links.extend(soup.select(
-            'table[class^="wikitable"] a[href^="/wiki"]'))
+        all_links.extend(soup.select('table[class^="wikitable"] a[href^="/wiki"]'))
         # ul lists
         all_links.extend(soup.select('ul a[href^="/wiki"]'))
         # ol lists
         all_links.extend(soup.select('ol a[href^="/wiki"]'))
+        for idx, val in enumerate(all_links):#remouves all the "null" titles. TOOD : maney don't leave this in
+            if(val.contents[0] == ""):
+                del all_links[-1]
+    
         self.__allLinksList = all_links
 
     def getPageTitle(self):

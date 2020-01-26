@@ -19,14 +19,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
+    <!--fontawesome icons-->
+    <script src="https://kit.fontawesome.com/ad3201eff3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div class="bg"></div>
     <div class="container-fluid">
-        <h1>WikiGame.py</h1>
-        <p>Find the goal page in the less possible moves</p>
+        <h1><i class="fab fa-wikipedia-w"></i>ikiGame.<i class="fab fa-python"></i></h1>
+        <p>
+            2 Wikipedia pages are chosen randomly between more the 6 million articles. <br>
+            Your goal is to go from the initial starting page to the goal page in the less possible moves.
+        </p>
         <div class="row">
             <div class="col col-md-10">
                 <div class="row">
@@ -38,7 +42,9 @@
                                 <h4 class="card-title" id="startPage"></h4>
                                 <h5>Starting Page</h5>
                                 <hr>
-                                <small><p class="card-text" id="startPageDesc">...</p></small>
+                                <small>
+                                    <p class="card-text" id="startPageDesc">...</p>
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -50,7 +56,9 @@
                                 <h4 class="card-title" id="currentPage"></h4>
                                 <h5>Current Page</h5>
                                 <hr>
-                                <small><p class="card-text" id="currentPageDesc">...</p></small>
+                                <small>
+                                    <p class="card-text" id="currentPageDesc">...</p>
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -62,7 +70,9 @@
                                 <h5 class="card-title" id="goalPage"></h5>
                                 <h5>Goal Page</h5>
                                 <hr>
-                                <small><p class="card-text" id="goalPageDesc">...</p></small>
+                                <small>
+                                    <p class="card-text" id="goalPageDesc">...</p>
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -74,9 +84,9 @@
             </div>
             <div class="col col-md-2">
                 <H4 id="roundCounter"></H4>
-                <h6>Your page history</h6>
+                <h6>Your page history : </h6>
                 <ol id="history"></ol>
-                <button class="btn btn-info" onclick="goToPrevPage()"> Go Back one page </button>
+                <button class="btn btn-info" onclick="goToPrevPage()"><i class="fas fa-undo"></i> Go Back one page </button>
             </div>
 
         </div>
@@ -92,7 +102,7 @@
                     </button>-->
                 </div>
                 <div class="modal-body">
-                    <p>Well done, you found the correct page in <p id="finalRounds">XXX</p> rounds</p>
+                    <p>Well done, you found the correct page in <div id="finalRounds">XXX</div> rounds</p>
                 </div>
             </div>
         </div>

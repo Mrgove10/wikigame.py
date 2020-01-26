@@ -9,8 +9,10 @@ Warning : This game can be very hard. There are more then 6 000 000 (Jan 2020) a
 
 ## To install
 
+To run please use **python 3**
+
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ### Main libraries used
@@ -21,7 +23,7 @@ pip install -r requirements.txt
 ## To play
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 Once lanched, the game should open a new tab in your browser.
@@ -29,7 +31,7 @@ If the page does not open automagicly you can go to http://localhost:8000/index.
 
 ## Tested on
 
-| OS      | Browser | Python Version | Works |
-| ------- | ------- | -------------- | ----- |
-| Windows | Firefox | 3.6.8          | ✅     |
-| Linux   | Firefox | 2.7.16         | ❌     |
+| OS              | Browser | Python Version | Works |
+| --------------- | ------- | -------------- | ----- |
+| Windows         | Firefox | 3.6.8          | ✅     |
+| Linux (Pop!_OS) | Firefox | 3.7.3          | ✅     |
