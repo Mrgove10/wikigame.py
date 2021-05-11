@@ -1,5 +1,7 @@
 # wikigame.py
 
+[![Build](https://github.com/Mrgove10/wikigame.py/actions/workflows/main.yml/badge.svg)](https://github.com/Mrgove10/wikigame.py/actions/workflows/main.yml)
+
 wikigame.py is a simple python game to learn tons of stuff on wikipedia.
 
 You are given two random pages, one is where you start, the over is where you need to go.

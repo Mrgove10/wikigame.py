@@ -22,7 +22,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: wikigame_windows
-          path: dist/main/main.exe
+          path: dist/main.exe
 
   build_mac:
     runs-on: macos-latest
@@ -39,12 +39,12 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
           pyinstaller main.py --onefile
-          ls dist
+          ls -la dist
 
       - uses: actions/upload-artifact@v2
         with:
           name: wikigame_mac
-          path: dist/main/main
+          path: dist/main
 
   build_linux:
     runs-on: ubuntu-latest
@@ -61,9 +61,9 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
           pyinstaller main.py --onefile
-          ls dist
+          ls -la dist
 
       - uses: actions/upload-artifact@v2
         with:
           name: wikigame_linux
-          path: dist/main/main
+          path: dist/main
