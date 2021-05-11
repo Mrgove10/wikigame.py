@@ -13,7 +13,7 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
           pyinstaller main.py --onefile
-          tree dist
+          dir dist/main
 
       - uses: actions/upload-artifact@v2
         with:
@@ -31,7 +31,7 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
           pyinstaller main.py --onefile
-          tree dist
+          ls dist/main
 
       - uses: actions/upload-artifact@v2
         with:
@@ -49,7 +49,7 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller
           pyinstaller main.py --onefile
-          tree dist
+          ls dist/main
 
       - uses: actions/upload-artifact@v2
         with:
