@@ -20,7 +20,7 @@ wikiPageStackTrace.append(startPage)
 titleStackTrace.append(startPage.getTitle())
 urlStackTrace.append(startPage.getUrl())
 
-eel.init('web', allowed_extensions=['.js', '.html'])  # Set web files folder
+eel.init('D:\PERSO\EPSI\B3_(2019-2020)\Python3\wikigame.py\web', allowed_extensions=['.js', '.html'])  # Set web files folder
 
 
 @eel.expose

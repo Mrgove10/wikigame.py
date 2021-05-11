@@ -1,0 +1,51 @@
+name: Build
+on: push
+jobs:
+
+  build_windows:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+      pip install -r requirements.txt
+      pip install pyinstaller
+      pyinstaller main.py --onefile
+      tree dist
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: wikigame_windows
+        path: dist/main
+
+  build_mac:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+      pip install -r requirements.txt
+      pip install pyinstaller
+      pyinstaller main.py --onefile
+      tree dist
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: wikigame_mac
+        path: dist/main
+
+  build_linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+      pip install -r requirements.txt
+      pip install pyinstaller
+      pyinstaller main.py --onefile
+      tree dist
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: wikigame_linux
+        path: dist/main
